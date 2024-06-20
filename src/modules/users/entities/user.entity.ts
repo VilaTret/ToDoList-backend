@@ -3,9 +3,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { RefreshTokensEntity } from '../../auth/entities/refresh-tokens.entity';
 import { v4 } from 'uuid';
 
 @Entity('users')
@@ -30,6 +32,9 @@ export class UserEntity {
 
   @UpdateDateColumn({ type: 'timestamp with time zone', nullable: true })
   update_at: string;
+
+  @OneToMany(() => RefreshTokensEntity, (token) => token.user)
+  refresh_tokens: RefreshTokensEntity[];
 
   @BeforeInsert()
   generateId() {
