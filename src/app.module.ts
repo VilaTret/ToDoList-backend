@@ -20,6 +20,8 @@ import { UserModule } from './modules/users/user.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [resolve(__dirname, './**/**/entities/*{.ts,.js}')],
+      migrationsTableName: 'migration',
+      migrations: [resolve(__dirname, './migrations/*{.ts,.js}')],
 
       logging: ['error'],
     }),
